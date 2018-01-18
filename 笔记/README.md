@@ -1,6 +1,3 @@
-## 文档链接
-http://interactivebrokers.github.io/tws-api/initial_setup.html#tws&gsc.tab=0
-
 ## 文档笔记
 https://www.interactivebrokers.com/en/index.php?f=5041
 
@@ -20,6 +17,5 @@ https://www.interactivebrokers.com/en/index.php?f=5041
 
 #### API的文档链接是：
 http://interactivebrokers.github.io/tws-api/#gsc.tab=0
-
 
 
