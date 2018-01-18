@@ -2,6 +2,7 @@
 from ib.ext.Contract import Contract
 from ib.ext.Order import Order
 from ib.opt import Connection, message
+# import pandas as pd # for data analysis
 
 def error_handler(msg):
     """Handles the capturing of error messages"""
@@ -47,7 +48,7 @@ if __name__ == "__main__":
     # (The clientId is chosen by us and we will need 
     # separate IDs for both the execution connection and
     # market data connection)
-    tws_conn = Connection.create(port=7497, clientId=100)
+    tws_conn = Connection.create(port=7497, clientId=100) # now there is a problem: I have to change clientId every time to avoid usfarm issue
     tws_conn.connect()
 
     # Assign the error handling function defined above
@@ -70,6 +71,9 @@ if __name__ == "__main__":
 
     # Use the connection to the send the order to IB
     tws_conn.placeOrder(order_id, goog_contract, goog_order)
+
+    tickedId = 1002
+    tws_conn.reqMktData(tickedId, goog_contract, "", False)
 
     # Disconnect from TWS
     tws_conn.disconnect()
