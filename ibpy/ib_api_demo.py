@@ -63,10 +63,10 @@ if __name__ == "__main__":
     order_id = 1
 
     # Create a contract in GOOG stock via SMART order routing
-    goog_contract = create_contract('GOOG', 'STK', 'SMART', 'SMART', 'USD')
+    goog_contract = create_contract('FB', 'STK', 'SMART', 'SMART', 'USD')
 
     # Go long 100 shares of Google
-    goog_order = create_order('MKT', 100, 'BUY')
+    goog_order = create_order('MKT', 50, 'BUY')
 
     # Use the connection to the send the order to IB
     tws_conn.placeOrder(order_id, goog_contract, goog_order)
