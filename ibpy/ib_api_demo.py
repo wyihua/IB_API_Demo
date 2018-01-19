@@ -45,6 +45,8 @@ def create_order(order_type, quantity, action):
     order.m_action = action
     return order
 
+    
+
 if __name__ == "__main__":
     # Connect to the Trader Workstation (TWS) running on the
     # usual port of 7496, with a clientId of 100
@@ -82,9 +84,7 @@ if __name__ == "__main__":
 
     ##############################
     # Here is the code for retrieveing data from market
-    # callback = EWrapper()
-    # callback.initiate_variables()
-    any = AnyWrapper()
+    
 
     ##############################
 
