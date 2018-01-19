@@ -2,8 +2,10 @@
 from ib.ext.Contract import Contract
 from ib.ext.Order import Order
 from ib.opt import Connection, message
-# import pandas as pd # for data analysis
-from IBWrapper import IBWrapper, contract
+
+from ib.ext.AnyWrapper import AnyWrapper
+from ib.ext.EWrapper import EWrapper
+
 
 def error_handler(msg):
     """Handles the capturing of error messages"""
@@ -49,7 +51,7 @@ if __name__ == "__main__":
     # (The clientId is chosen by us and we will need 
     # separate IDs for both the execution connection and
     # market data connection)
-    tws_conn = Connection.create(port=7497, clientId=100) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    tws_conn = Connection.create(port=7497, clientId=103) # now there is a problem: I have to change clientId every time to avoid usfarm issue
     tws_conn.connect()
 
     # Assign the error handling function defined above
@@ -80,8 +82,9 @@ if __name__ == "__main__":
 
     ##############################
     # Here is the code for retrieveing data from market
-    callback = IBWrapper()
-    callback.initiate_variables()
+    # callback = EWrapper()
+    # callback.initiate_variables()
+    any = AnyWrapper()
 
     ##############################
 
