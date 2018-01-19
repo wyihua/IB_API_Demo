@@ -45,6 +45,8 @@ def create_order(order_type, quantity, action):
     order.m_action = action
     return order
 
+def my_tick_handler(msg):
+    print('tick handler', msg)
     
 
 if __name__ == "__main__":
@@ -53,7 +55,7 @@ if __name__ == "__main__":
     # (The clientId is chosen by us and we will need 
     # separate IDs for both the execution connection and
     # market data connection)
-    tws_conn = Connection.create(port=7497, clientId=103) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    tws_conn = Connection.create(port=7497, clientId=109) # now there is a problem: I have to change clientId every time to avoid usfarm issue
     tws_conn.connect()
 
     # Assign the error handling function defined above
@@ -63,6 +65,14 @@ if __name__ == "__main__":
     # Assign all of the server reply messages to the
     # reply_handler function defined above
     tws_conn.registerAll(reply_handler)
+
+    ############################################################
+    # Try to get data
+    tws_conn.register(my_tick_handler, message.tickSize, message.tickPrice)
+    # tws_conn.reqMktData()
+
+
+    ############################################################
 
     # Create an order ID which is 'global' for this session. This
     # will need incrementing once new orders are submitted.
@@ -75,10 +85,11 @@ if __name__ == "__main__":
     goog_order = create_order('MKT', 50, 'BUY')
 
     # Use the connection to the send the order to IB
-    tws_conn.placeOrder(order_id, goog_contract, goog_order)
+    # tws_conn.placeOrder(order_id, goog_contract, goog_order)
 
-    tickedId = 1002
-    tws_conn.reqMktData(tickedId, goog_contract, "", False)
+
+    # tickedId = 1002
+    tws_conn.reqMktData(1002, goog_contract, "", False)
 
 
 
