@@ -3,8 +3,12 @@ from ib.ext.Contract import Contract
 from ib.ext.Order import Order
 from ib.opt import Connection, message
 
-from ib.ext.AnyWrapper import AnyWrapper
-from ib.ext.EWrapper import EWrapper
+from IBWrapper import IBWrapper, contract
+
+# from ib.ext.AnyWrapper import AnyWrapper
+# from ib.ext.EWrapper import EWrapper
+
+
 
 
 def error_handler(msg):
@@ -66,13 +70,6 @@ if __name__ == "__main__":
     # reply_handler function defined above
     tws_conn.registerAll(reply_handler)
 
-    ############################################################
-    # Try to get data
-    tws_conn.register(my_tick_handler, message.tickSize, message.tickPrice)
-    # tws_conn.reqMktData()
-
-
-    ############################################################
 
     # Create an order ID which is 'global' for this session. This
     # will need incrementing once new orders are submitted.
@@ -95,6 +92,8 @@ if __name__ == "__main__":
 
     ##############################
     # Here is the code for retrieveing data from market
+    callback = IBWrapper()
+    callback.initiate_variables()
     
 
     ##############################
