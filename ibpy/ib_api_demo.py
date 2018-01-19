@@ -3,6 +3,7 @@ from ib.ext.Contract import Contract
 from ib.ext.Order import Order
 from ib.opt import Connection, message
 # import pandas as pd # for data analysis
+from IBWrapper import IBWrapper, contract
 
 def error_handler(msg):
     """Handles the capturing of error messages"""
@@ -74,6 +75,16 @@ if __name__ == "__main__":
 
     tickedId = 1002
     tws_conn.reqMktData(tickedId, goog_contract, "", False)
+
+
+
+    ##############################
+    # Here is the code for retrieveing data from market
+    callback = IBWrapper()
+    callback.initiate_variables()
+
+    ##############################
+
 
     # Disconnect from TWS
     tws_conn.disconnect()
