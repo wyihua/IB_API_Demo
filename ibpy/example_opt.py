@@ -26,7 +26,6 @@ if __name__ == '__main__':
     con.connect()
 
     def inner():
-
         con.reqAccountUpdates(1, '')
         qqqq = Contract()
         qqqq.m_symbol = 'QQQQ'
