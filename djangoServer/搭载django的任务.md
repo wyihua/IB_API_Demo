@@ -1,3 +1,7 @@
+## Django的教程链接
+https://docs.djangoproject.com/en/2.0/contents/
+
+
 （所以要使用的只能是python3，而不能用python2.7）
 1.	初始化django应用
 2.	在django上面绑定一个template
