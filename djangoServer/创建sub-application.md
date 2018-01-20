@@ -35,5 +35,13 @@ https://docs.djangoproject.com/en/2.0/intro/tutorial04/#use-generic-views-less-c
 2.	在这个类里面绑定model和template
 3.	在url文件里面采用URLconf
 
+## 给DB家两个ITEMS
+#### 解释
+出现这个问题的原因是，在使用generic view的时候，我不知道template是否会主动显示model里面的对象。
+所以我要在数据库里面家两个items，看看template会不会自动渲染这两个items。
+
+#### 手动给数据库增加items的办法-使用shell
+
+#### 遇到问题：刚才常见的数据貌似没有属性
 
 
