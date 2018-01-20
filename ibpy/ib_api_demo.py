@@ -132,11 +132,6 @@ if __name__ == "__main__":
     # tws_conn.placeOrder(order_id, goog_contract, goog_order)
 
 
-    # tickedId = 1002
-
-    
-
-
     # tws_conn.reqMktData(1002, goog_contract, "", False)
 
 
@@ -150,6 +145,9 @@ if __name__ == "__main__":
     contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
     tickedId = 1002
     # tws_conn.reqMarketDataType( MarketDataTypeEnum.DELAYED )
+
+    # tws_conn.placeOrder(1002, contract_info, goog_order)
+
     sleep(10)
     tws_conn.reqMktData(tickedId, contract_info, "", False)
     sleep(10)
