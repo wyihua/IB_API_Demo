@@ -20,5 +20,5 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', views.index, name='index'),
-    path('', include('polls.urls')), # 绑定子应用的url
+    path('', include('ibhandler.urls')), # 绑定子应用的url
 ]
