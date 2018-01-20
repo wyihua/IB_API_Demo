@@ -15,7 +15,7 @@ from time import sleep
 
 def error_handler(msg):
     """Handles the capturing of error messages"""
-    print "Server Error: %s" % msg
+    print("Server Error: %s" % msg)
 
 def reply_handler(msg):
     """Handles of server replies"""
@@ -57,7 +57,7 @@ def reply_handler(msg):
         msgType = tick_type[msg.field]
 
     # msg.type = tick_type[msg.field]
-    print "Server Response: %s, %s, msgType = %s" % (msg.typeName, msg, msgType)
+    print("Server Response: %s, %s, msgType = %s" % (msg.typeName, msg, msgType))
 
 
 def create_contract(symbol, sec_type, exch, prim_exch, curr):
