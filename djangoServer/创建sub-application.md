@@ -14,3 +14,14 @@ https://docs.djangoproject.com/en/2.0/contents/
 3.	还需要在子应用里面创建url文件（已完成）
 
 
+## 创建一个MODEL
+#### 参考链接：
+https://docs.djangoproject.com/en/2.0/intro/tutorial02/#database-setup 
+
+#### 我要做的工作有：
+1.	在主程序绑定数据库（上一步已完成）
+2.	在 models.py文件里面定义新的model类（ticket）（我昨天应该在主程序里面写了）（已完成）
+3.	在命令行使用makeimmigration（已完成，这之后的变化是子应用的migrations文件夹里面多了一个初始化的py文件）
+4.	然后使用sqlmigrate查看（注意检查下migration文件夹有什么不同）（已完成，文件中知识多了一个缓存文件）
+5.	在命令行migrate（已完成）
+6.	使用shell测试（已完成）
