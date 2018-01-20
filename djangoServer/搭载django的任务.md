@@ -21,3 +21,19 @@
 然后真正的问题/解答不是修改设置，而是在url.py文件里面引入views文件
 
 #### 现在已经能够展示默认的文字了。
+
+## 展示HTML文件
+#### 地址是怎么操作的
+Template的地址是index.html。
+那么我可能有：
+1.	template/index.html
+2.	./index.html
+
+两种选择。
+
+#### 测试结果
+问题不在地址，而是在于genericView需要Model，而我现在没有model。
+
+#### 初始渲染HTML的方法
+在django的shortcut里面调用render函数
+
