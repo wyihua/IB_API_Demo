@@ -19,7 +19,45 @@ def error_handler(msg):
 
 def reply_handler(msg):
     """Handles of server replies"""
-    print "Server Response: %s, %s" % (msg.typeName, msg)
+    tick_type = {0 : "BID SIZE",
+             1 : "BID PRICE",
+             2 : "ASK PRICE",
+             3 : "ASK SIZE",
+             4 : "LAST PRICE",
+             5 : "LAST SIZE",
+             6 : "HIGH",
+             7 : "LOW",
+             8 : "VOLUME",
+             9 : "CLOSE PRICE",
+             10 : "BID OPTION COMPUTATION",
+             11 : "ASK OPTION COMPUTATION",
+             12 : "LAST OPTION COMPUTATION",
+             13 : "MODEL OPTION COMPUTATION",
+             14 : "OPEN_TICK",
+             15 : "LOW 13 WEEK",
+             16 : "HIGH 13 WEEK",
+             17 : "LOW 26 WEEK",
+             18 : "HIGH 26 WEEK",
+             19 : "LOW 52 WEEK",
+             20 : "HIGH 52 WEEK",
+             21 : "AVG VOLUME",
+             22 : "OPEN INTEREST",
+             23 : "OPTION HISTORICAL VOL",
+             24 : "OPTION IMPLIED VOL",
+             27 : "OPTION CALL OPEN INTEREST",
+             28 : "OPTION PUT OPEN INTEREST",
+             29 : "OPTION CALL VOLUME"}
+
+    # tick_data = pd.DataFrame(msg.size, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
+    
+    # tick_data["Type"] = tick_data["field"].map(tick_type)
+    # msg['Type'] = msg['field'].map(tick_type)
+    msgType = 'Undefined'
+    if hasattr(msg, 'field'):
+        msgType = tick_type[msg.field]
+
+    # msg.type = tick_type[msg.field]
+    print "Server Response: %s, %s, msgType = %s" % (msg.typeName, msg, msgType)
 
 
 def create_contract(symbol, sec_type, exch, prim_exch, curr):
@@ -116,38 +154,11 @@ if __name__ == "__main__":
     tws_conn.reqMktData(tickedId, contract_info, "", False)
     sleep(10)
 
-    tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
-    tick_type = {0 : "BID SIZE",
-             1 : "BID PRICE",
-             2 : "ASK PRICE",
-             3 : "ASK SIZE",
-             4 : "LAST PRICE",
-             5 : "LAST SIZE",
-             6 : "HIGH",
-             7 : "LOW",
-             8 : "VOLUME",
-             9 : "CLOSE PRICE",
-             10 : "BID OPTION COMPUTATION",
-             11 : "ASK OPTION COMPUTATION",
-             12 : "LAST OPTION COMPUTATION",
-             13 : "MODEL OPTION COMPUTATION",
-             14 : "OPEN_TICK",
-             15 : "LOW 13 WEEK",
-             16 : "HIGH 13 WEEK",
-             17 : "LOW 26 WEEK",
-             18 : "HIGH 26 WEEK",
-             19 : "LOW 52 WEEK",
-             20 : "HIGH 52 WEEK",
-             21 : "AVG VOLUME",
-             22 : "OPEN INTEREST",
-             23 : "OPTION HISTORICAL VOL",
-             24 : "OPTION IMPLIED VOL",
-             27 : "OPTION CALL OPEN INTEREST",
-             28 : "OPTION PUT OPEN INTEREST",
-             29 : "OPTION CALL VOLUME"}
-    tick_data["Type"] = tick_data["field"].map(tick_type)
+    # tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
+    
+    # tick_data["Type"] = tick_data["field"].map(tick_type)
 
-    print tick_data
+    # print tick_data
     
 
     ##############################
