@@ -3,7 +3,9 @@ from ib.ext.Contract import Contract
 from ib.ext.Order import Order
 from ib.opt import Connection, message
 
+import pandas as pd
 from IBWrapper import IBWrapper, contract
+from time import sleep
 
 # from ib.ext.AnyWrapper import AnyWrapper
 # from ib.ext.EWrapper import EWrapper
@@ -59,8 +61,15 @@ if __name__ == "__main__":
     # (The clientId is chosen by us and we will need 
     # separate IDs for both the execution connection and
     # market data connection)
-    tws_conn = Connection.create(port=7497, clientId=109) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    tws_conn = Connection.create(port=7497, clientId=110) # now there is a problem: I have to change clientId every time to avoid usfarm issue
     tws_conn.connect()
+
+    ##############################
+    # accountName = "DU254946"
+    # tws_conn.reqAccountUpdates(1, accountName)
+
+
+    ##############################
 
     # Assign the error handling function defined above
     # to the TWS connection
@@ -76,7 +85,7 @@ if __name__ == "__main__":
     order_id = 1
 
     # Create a contract in GOOG stock via SMART order routing
-    goog_contract = create_contract('FB', 'STK', 'SMART', 'SMART', 'USD')
+    goog_contract = create_contract('EUR', 'STK', 'SMART', 'SMART', 'USD')
 
     # Go long 100 shares of Google
     goog_order = create_order('MKT', 50, 'BUY')
@@ -86,7 +95,11 @@ if __name__ == "__main__":
 
 
     # tickedId = 1002
-    tws_conn.reqMktData(1002, goog_contract, "", False)
+
+    
+
+
+    # tws_conn.reqMktData(1002, goog_contract, "", False)
 
 
 
@@ -94,6 +107,47 @@ if __name__ == "__main__":
     # Here is the code for retrieveing data from market
     callback = IBWrapper()
     callback.initiate_variables()
+    # tws_conn.reqMktData(1002, goog_contract, "", False)
+    create = contract()
+    contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
+    tickedId = 1002
+    # tws_conn.reqMarketDataType( MarketDataTypeEnum.DELAYED )
+    sleep(10)
+    tws_conn.reqMktData(tickedId, contract_info, "", False)
+    sleep(10)
+
+    tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
+    tick_type = {0 : "BID SIZE",
+             1 : "BID PRICE",
+             2 : "ASK PRICE",
+             3 : "ASK SIZE",
+             4 : "LAST PRICE",
+             5 : "LAST SIZE",
+             6 : "HIGH",
+             7 : "LOW",
+             8 : "VOLUME",
+             9 : "CLOSE PRICE",
+             10 : "BID OPTION COMPUTATION",
+             11 : "ASK OPTION COMPUTATION",
+             12 : "LAST OPTION COMPUTATION",
+             13 : "MODEL OPTION COMPUTATION",
+             14 : "OPEN_TICK",
+             15 : "LOW 13 WEEK",
+             16 : "HIGH 13 WEEK",
+             17 : "LOW 26 WEEK",
+             18 : "HIGH 26 WEEK",
+             19 : "LOW 52 WEEK",
+             20 : "HIGH 52 WEEK",
+             21 : "AVG VOLUME",
+             22 : "OPEN INTEREST",
+             23 : "OPTION HISTORICAL VOL",
+             24 : "OPTION IMPLIED VOL",
+             27 : "OPTION CALL OPEN INTEREST",
+             28 : "OPTION PUT OPEN INTEREST",
+             29 : "OPTION CALL VOLUME"}
+    tick_data["Type"] = tick_data["field"].map(tick_type)
+
+    print tick_data
     
 
     ##############################
