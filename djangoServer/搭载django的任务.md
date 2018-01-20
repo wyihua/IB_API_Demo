@@ -37,3 +37,34 @@ Template的地址是index.html。
 #### 初始渲染HTML的方法
 在django的shortcut里面调用render函数
 
+## 给TEMPLATE输入参数
+#### 能做的工作是：
+1.	获得一个HTML的sample
+2.	给render函数最后的一个参数设置一个变量（数组）
+3.	在HTML文件里面调用那个变量
+
+#### 发现传递的参数是有限制的：
+1.	普通的数组、字符串和数字不能直接传递
+2.	能够传递的有model等context
+
+所以我可能需要知道这里的context的标准是什么
+
+#### 尝试普通的dict
+粗略的看了几个答案，发现结论可能是context要求是dict。那么我创建一个dict来看看是否能够传参。
+结果是不能使用普通的python的dict。
+
+#### 那么可能是：
+1.	这里的dict并不是并不是指的python里面的dict
+2.	现在的context要求又变了，dict也不行了
+
+错误的提醒信息是“dict不是hashable的”。这意味着传参的对象必须要hashable的。
+
+#### 那么我们现在有两种解决办法：
+1.	按常规做一个model出来，然后调用那个model
+2.	想办法做出一个简单的hashable的对象
+
+
+#### 必须是dict
+我尝试用一个比较简单的方法创造hashable的对象，结果发现django服务器报错，要求是dict。但是之前我们创造dict的时候又说dict不是hashable的对象。
+基本上我们只能创造model对象，然后以model对象传参了
+
