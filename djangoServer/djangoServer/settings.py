@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'djangoServer.apps.DjangoServerConfig',
+    'ibhandler.apps.IbhandlerConfig', # It's impossible to remember this
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

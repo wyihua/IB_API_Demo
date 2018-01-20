@@ -9,5 +9,8 @@ https://docs.djangoproject.com/en/2.0/contents/
 
 ## 调整URL
 #### 我记得要调整的设置包括：
-1.	在主程序的setting里面加入子应用的config文件
-2.	URL不确定怎么设置，应该要查看URL文件
+1.	在主程序的setting里面加入子应用的config文件（这是为绑定数据库）（貌似已完成）
+2.	URL不确定怎么设置，应该要查看URL文件（已完成）
+3.	还需要在子应用里面创建url文件（已完成）
+
+
