@@ -71,3 +71,9 @@ https://docs.djangoproject.com/en/2.0/intro/tutorial04/#use-generic-views-less-c
 
 成功。
 
+## 装饰TEMPLATE
+#### 要求是：
+1.	有一个列表（已完成）
+2.	有一个标题（已完成）
+3.	有一个按钮（刷新）
+
