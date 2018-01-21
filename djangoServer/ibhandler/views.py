@@ -10,12 +10,16 @@ from ibpy import ib_api_demo
 
 def index(request):
     # getMktdata()
-    _thread.start_new_thread(getMktdata, ())
 
-    # t = Ticket()
-    # t.save()
-    if(request.GET.get('mybtn')):
-        print("get button request")
+    if(request.GET.get('addData')):
+        t = Ticket()
+        t.save()
+        _thread.start_new_thread(getMktdata, ())
+
+    
+    if(request.GET.get('clearData')):
+        # print("get clearData request")
+        Ticket.objects.all().delete()
 
     context = {'ticket_list': Ticket.objects}
     return render(request, 'ibhandler/index.html', context)
@@ -28,3 +32,4 @@ def getMktdata():
 
     ticket_data = ib_api_demo.getMktData()
     print(ticket_data)
+
