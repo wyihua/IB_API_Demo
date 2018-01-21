@@ -129,7 +129,7 @@ def getMktData():
 
 
 def buyTicket():
-    tws_conn = Connection.create(port=7497, clientId=110) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    tws_conn = Connection.create(port=7497, clientId=105) # now there is a problem: I have to change clientId every time to avoid usfarm issue
     tws_conn.connect()
 
     # Assign the handling function defined above
@@ -143,37 +143,6 @@ def buyTicket():
 
     # Use the connection to the send the order to IB
     tws_conn.placeOrder(order_id, goog_contract, goog_order)
-
-
-    # tws_conn.reqMktData(1002, goog_contract, "", False)
-
-
-
-    ##############################
-    # Here is the code for retrieveing data from market
-    # callback = IBWrapper()
-    # callback.initiate_variables()
-    create = contract()
-    contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
-    tickedId = 1002
-    # tws_conn.reqMarketDataType( MarketDataTypeEnum.DELAYED )
-
-    # tws_conn.placeOrder(1002, contract_info, goog_order)
-
-    sleep(10)
-    tws_conn.reqMktData(tickedId, contract_info, "", False)
-    sleep(10)
-
-    tws_conn.eDisconnect()
-
-    # tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
-    
-    # tick_data["Type"] = tick_data["field"].map(tick_type)
-
-    # print tick_data
-    
-
-    ##############################
 
 
     # Disconnect from TWS

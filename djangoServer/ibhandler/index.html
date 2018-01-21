@@ -4,7 +4,7 @@
 {% for ticket in ticket_list.all %}
     <li>TicketID : {{ ticket.id }}
         <ul>
-            <li>ask_size : {{ ticket.ask_size }}</li>
+            <li>ask_price : {{ ticket.ask_price }}</li>
             <li>bit_size : {{ ticket.bit_size }}</li>
             <li>last_size : {{ ticket.last_size }}</li>
             <li>bid_price : {{ ticket.bid_price }}</li>
@@ -18,4 +18,5 @@
 <form action="#" method="get">
     <button name="addData" type="submit" value="Get Current Ticket Data">Get Current Ticket Data</button>
     <button name="clearData" type="submit" value="Clear Old Ticket Data">Clear Old Ticket Data</button>
+    <button name="buyTicket" type="submit" value="Buy A Ticket">Buy A Ticket</button>
 </form>

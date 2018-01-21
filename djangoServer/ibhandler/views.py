@@ -12,14 +12,17 @@ def index(request):
     # getMktdata()
 
     if(request.GET.get('addData')):
-        # t = Ticket()
-        # t.save()
         _thread.start_new_thread(getMktdata, ())
+    
+    if (request.GET.get('buyTicket')):
+        _thread.start_new_thread(ib_api_demo.buyTicket, ())
 
     
     if(request.GET.get('clearData')):
         # print("get clearData request")
         Ticket.objects.all().delete()
+    
+
 
     context = {'ticket_list': Ticket.objects}
     return render(request, 'ibhandler/index.html', context)
@@ -34,9 +37,6 @@ def getMktdata():
     # print(ticket_data)
     print('field is :', ticket_data['field'][0])
     print('price is :', ticket_data['price'][0])
-
-
-
 
     t = Ticket()
     for id in range(len(ticket_data['ticketId'])):
