@@ -42,6 +42,11 @@ https://docs.djangoproject.com/en/2.0/intro/tutorial04/#use-generic-views-less-c
 
 #### 手动给数据库增加items的办法-使用shell
 
+在解决了下面的问题之后，成功增加了两个items
+
+#### view里面是否自动生成了数据列表？
+没有
+
 ## 遇到问题：刚才常见的数据貌似没有属性
 这里说没有属性的依据是在migrations文件夹的init文件里面，创建命令里面只有创建table的语句，跟没有提到和属性相关的语句。
 然后通过sql命令检查schema文件，发现确实没有属性。
