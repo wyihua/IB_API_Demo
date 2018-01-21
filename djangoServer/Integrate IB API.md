@@ -29,7 +29,7 @@ HTTP -> index() -> getMktData -> index.saveData()
 
 #### 仔细上面的数据链的流程：
 1.	HTTP->index，已完成
-2.	Index -> getMktData，基本已完成，只是需要在getMktData函数本身获得数据，而不是在handler里面
+2.	Index -> getMktData，基本已完成，只是需要在getMktData函数本身获得数据，而不是在handler里面（可能需要采用异步的方式调用函数）
 3.	把getMktData里面的数据传回index（需要以第二步作为基础）
 4.	想办法储存数据
 
@@ -51,3 +51,21 @@ HTTP -> index() -> getMktData -> index.saveData()
 #### 现在需要想办法让handler传递数据。
 我们怎么让handler改变任何python中的变量？
 目前明显能够做到的是保存成本地文件，但是这个方法不推荐。
+
+使用callback函数。
+
+## 研究如何使用CALLBACK函数
+根据南洋理工的教程，这个callback函数是和pd一起用来输出数据的。
+
+#### Callback是怎么绑定API的？
+tws_connect是通过callback注册出来的。这里我们不使用register handler的方法，而是在声明tws的时候绑定callback。
+
+#### 结果
+现在我们已经能够在index里面获得市场数据了
+
+#### 接下来要做的工作有：
+1.	在index里面使用异步来调用api，防止延迟
+2.	在getMktData函数里面，将获取的市场数据储存成ticket对象
+3.	在template里面把数据属性给显示出来
+
+第三步是最容易的，只需要确定显示的属性就行

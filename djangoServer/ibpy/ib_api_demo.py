@@ -2,6 +2,7 @@
 from ib.ext.Contract import Contract
 from ib.ext.Order import Order
 from ib.opt import Connection, message
+from ib.ext.EClientSocket import EClientSocket
 
 import pandas as pd
 from .IBWrapper import IBWrapper, contract
@@ -95,13 +96,21 @@ def my_tick_handler(msg):
 
 def getMktData():
 
+    callback = IBWrapper()
+    callback.initiate_variables()
+
+    tws_conn = EClientSocket(callback)
+    tws_conn.eConnect("", 7497, 110)
+
     # market data connection)
-    tws_conn = Connection.create(port=7497, clientId=110) # now there is a problem: I have to change clientId every time to avoid usfarm issue
-    tws_conn.connect()
+    # tws_conn = Connection.create(port=7497, clientId=110) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    # tws_conn.connect()
+    # tws.connect()
+    
 
     # Assign the handling function defined above
-    tws_conn.register(error_handler, 'Error')
-    tws_conn.registerAll(reply_handler)
+    # tws_conn.register(error_handler, 'Error')
+    # tws_conn.registerAll(reply_handler)
 
     create = contract()
     contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
@@ -109,7 +118,11 @@ def getMktData():
     sleep(10)
     tws_conn.reqMktData(tickedId, contract_info, "", False)
     sleep(10)
-    tws_conn.disconnect()
+    # tws_conn.disconnect()
+
+    tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
+    # print(tick_data)
+    return tick_data
 
 
 
