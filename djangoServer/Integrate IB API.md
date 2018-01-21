@@ -69,3 +69,14 @@ tws_connect是通过callback注册出来的。这里我们不使用register hand
 3.	在template里面把数据属性给显示出来
 
 第三步是最容易的，只需要确定显示的属性就行
+
+## 在TEMPLATE里面显示所有的属性
+已经完成
+
+## 在PYTHON里面采用异步调用
+#### 参看文档：
+https://www.tutorialspoint.com/python/python_multithreading.htm
+
+#### 要做的工作：
+已经完成。
+
