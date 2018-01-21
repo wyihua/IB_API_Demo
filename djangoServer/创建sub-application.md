@@ -63,3 +63,11 @@ https://docs.djangoproject.com/en/2.0/intro/tutorial04/#use-generic-views-less-c
 最后发现，问题的根源并不是有没有self语句，还是是否在变量的声明语句后面提供默认值。只有提供默认值，才是一个完整的属性声明函数。
 
 
+## 原始的RENDER方法
+#### 我们在主应用里面应该有相关的代码：
+1.	复制一下代码（已完成）
+2.	修改一下context（感觉Django这里可以有一个隐性的传参的办法，现在不考虑。当下只考虑显性传参数的办法）
+3.	在template里面写context的列表（成功）
+
+成功。
+
