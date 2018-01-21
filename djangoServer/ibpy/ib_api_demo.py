@@ -120,7 +120,7 @@ def getMktData():
     sleep(10)
     # tws_conn.disconnect()
 
-    tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
+    tick_data = pd.DataFrame(callback.tick_Price, columns = ['ticketId', 'field', 'price', 'canAutoExecute'])
     # print(tick_data)
     return tick_data
 
