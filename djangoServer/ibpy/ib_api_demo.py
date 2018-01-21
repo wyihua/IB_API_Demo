@@ -124,12 +124,9 @@ def getMktData():
     # print(tick_data)
     return tick_data
 
-
-
-
-
 def buyTicket():
     tws_conn = Connection.create(port=7497, clientId=105) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    
     tws_conn.connect()
 
     # Assign the handling function defined above

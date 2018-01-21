@@ -8,6 +8,7 @@ from .models import Ticket
 from ibpy import ib_api_demo
 
 
+
 def index(request):
     # getMktdata()
 
