@@ -91,4 +91,11 @@ https://www.tutorialspoint.com/python/python_multithreading.htm
 #### 现在可行的做法是：
 首先研究第一个选项，如果之前的方法能够告诉我们如何通过代码储存，那么我们就使用那个方法。如果找不到合适的方法，那么我们就优先尝试第三种方法。
 
+#### 我有一个想法
+现在发现admin是通过register model实现的。这个不可行。
+我想到的是也许我们能够在python脚本文件里面采用shell里面同样的语句来储存对象。
+
+我的猜想是对的。
+
+
 

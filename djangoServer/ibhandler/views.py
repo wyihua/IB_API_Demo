@@ -11,6 +11,9 @@ from ibpy import ib_api_demo
 def index(request):
     # getMktdata()
     _thread.start_new_thread(getMktdata, ())
+
+    # t = Ticket()
+    # t.save()
     context = {'ticket_list': Ticket.objects}
     return render(request, 'ibhandler/index.html', context)
 
