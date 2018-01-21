@@ -16,5 +16,6 @@ from .models import Ticket
 #         return Ticket.objects
 
 def index(request):
-    return render(request, 'ibhandler/index.html',)
+    context = {'ticket_list': Ticket.objects}
+    return render(request, 'ibhandler/index.html', context)
 

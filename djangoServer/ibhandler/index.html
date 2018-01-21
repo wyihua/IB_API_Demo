@@ -1,7 +1,7 @@
 <h1>Tickets Data</h1>
 
 <ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+{% for ticket in ticket_list.all %}
+    <li>{{ ticket }}</li>
 {% endfor %}
 </ul>
