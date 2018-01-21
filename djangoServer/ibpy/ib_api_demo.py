@@ -11,7 +11,7 @@ from time import sleep
 # from ib.ext.EWrapper import EWrapper
 
 
-
+# g_getData = 0
 
 def error_handler(msg):
     """Handles the capturing of error messages"""
@@ -103,7 +103,25 @@ def getMktData():
     tws_conn.register(error_handler, 'Error')
     tws_conn.registerAll(reply_handler)
 
-    # print("I am here")
+    create = contract()
+    contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
+    tickedId = 1002
+    sleep(10)
+    tws_conn.reqMktData(tickedId, contract_info, "", False)
+    sleep(10)
+    tws_conn.disconnect()
+
+
+
+
+
+def buyTicket():
+    tws_conn = Connection.create(port=7497, clientId=110) # now there is a problem: I have to change clientId every time to avoid usfarm issue
+    tws_conn.connect()
+
+    # Assign the handling function defined above
+    tws_conn.register(error_handler, 'Error')
+    tws_conn.registerAll(reply_handler)
 
     order_id = 1
     goog_contract = create_contract('FB', 'STK', 'SMART', 'SMART', 'USD')
@@ -122,17 +140,16 @@ def getMktData():
     # Here is the code for retrieveing data from market
     # callback = IBWrapper()
     # callback.initiate_variables()
-    # tws_conn.reqMktData(1002, goog_contract, "", False)
-    # create = contract()
-    # contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
-    # tickedId = 1002
+    create = contract()
+    contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
+    tickedId = 1002
     # tws_conn.reqMarketDataType( MarketDataTypeEnum.DELAYED )
 
     # tws_conn.placeOrder(1002, contract_info, goog_order)
 
-    # sleep(10)
-    # tws_conn.reqMktData(tickedId, contract_info, "", False)
-    # sleep(10)
+    sleep(10)
+    tws_conn.reqMktData(tickedId, contract_info, "", False)
+    sleep(10)
 
     # tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
     
