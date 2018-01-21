@@ -93,43 +93,25 @@ def my_tick_handler(msg):
     print('tick handler', msg)
     
 
-if __name__ == "__main__":
-    # Connect to the Trader Workstation (TWS) running on the
-    # usual port of 7496, with a clientId of 100
-    # (The clientId is chosen by us and we will need 
-    # separate IDs for both the execution connection and
+def getMktData():
+
     # market data connection)
     tws_conn = Connection.create(port=7497, clientId=110) # now there is a problem: I have to change clientId every time to avoid usfarm issue
     tws_conn.connect()
 
-    ##############################
-    # accountName = "DU254946"
-    # tws_conn.reqAccountUpdates(1, accountName)
-
-
-    ##############################
-
-    # Assign the error handling function defined above
-    # to the TWS connection
+    # Assign the handling function defined above
     tws_conn.register(error_handler, 'Error')
-
-    # Assign all of the server reply messages to the
-    # reply_handler function defined above
     tws_conn.registerAll(reply_handler)
 
+    # print("I am here")
 
-    # Create an order ID which is 'global' for this session. This
-    # will need incrementing once new orders are submitted.
     order_id = 1
-
-    # Create a contract in GOOG stock via SMART order routing
-    goog_contract = create_contract('EUR', 'STK', 'SMART', 'SMART', 'USD')
-
-    # Go long 100 shares of Google
+    goog_contract = create_contract('FB', 'STK', 'SMART', 'SMART', 'USD')
+    # goog_contract = create_contract('EUR', 'STK', 'SMART', 'SMART', 'USD')
     goog_order = create_order('MKT', 50, 'BUY')
 
     # Use the connection to the send the order to IB
-    # tws_conn.placeOrder(order_id, goog_contract, goog_order)
+    tws_conn.placeOrder(order_id, goog_contract, goog_order)
 
 
     # tws_conn.reqMktData(1002, goog_contract, "", False)
@@ -138,19 +120,19 @@ if __name__ == "__main__":
 
     ##############################
     # Here is the code for retrieveing data from market
-    callback = IBWrapper()
-    callback.initiate_variables()
+    # callback = IBWrapper()
+    # callback.initiate_variables()
     # tws_conn.reqMktData(1002, goog_contract, "", False)
-    create = contract()
-    contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
-    tickedId = 1002
+    # create = contract()
+    # contract_info = create.create_contract('EUR', 'CASH', 'IDEALPRO', 'USD')
+    # tickedId = 1002
     # tws_conn.reqMarketDataType( MarketDataTypeEnum.DELAYED )
 
     # tws_conn.placeOrder(1002, contract_info, goog_order)
 
-    sleep(10)
-    tws_conn.reqMktData(tickedId, contract_info, "", False)
-    sleep(10)
+    # sleep(10)
+    # tws_conn.reqMktData(tickedId, contract_info, "", False)
+    # sleep(10)
 
     # tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
     

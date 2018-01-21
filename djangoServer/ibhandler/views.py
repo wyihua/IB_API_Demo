@@ -16,4 +16,4 @@ def index(request):
 # Call IB API to get market data
 def getMktdata():
     # print("you will get data!")
-    ib_api_demo.error_handler('halloooo')
+    ib_api_demo.getMktData()
