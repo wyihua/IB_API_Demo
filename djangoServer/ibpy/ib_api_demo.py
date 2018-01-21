@@ -164,6 +164,8 @@ def buyTicket():
     tws_conn.reqMktData(tickedId, contract_info, "", False)
     sleep(10)
 
+    tws_conn.eDisconnect()
+
     # tick_data = pd.DataFrame(callback.tick_Price, columns = ['tickerId', 'field', 'price', 'canAutoExecute'])
     
     # tick_data["Type"] = tick_data["field"].map(tick_type)
