@@ -14,6 +14,9 @@ def index(request):
 
     # t = Ticket()
     # t.save()
+    if(request.GET.get('mybtn')):
+        print("get button request")
+
     context = {'ticket_list': Ticket.objects}
     return render(request, 'ibhandler/index.html', context)
 

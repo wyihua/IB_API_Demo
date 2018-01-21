@@ -104,4 +104,8 @@ https://www.tutorialspoint.com/python/python_multithreading.htm
 2.	增加新的数据
 
 
+## 研究如何让按钮触发DJANGO里面的函数
+#### 参考链接：
+https://stackoverflow.com/questions/17599035/django-how-can-i-call-a-view-function-from-template/19761466#19761466
 
+成功了。。。。。。。。
