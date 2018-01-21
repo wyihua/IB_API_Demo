@@ -5,16 +5,16 @@ from django.shortcuts import get_object_or_404, render
 
 
 # Define an hashable class as context for render method
-class Hero:
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
+# class Hero:
+    # def __init__(self, name, age):
+    #     self.name = name
+    #     self.age = age
 
-    def __eq__(self, obj):
-        return self.name == obj.name
+    # def __eq__(self, obj):
+    #     return self.name == obj.name
 
-    def __hash__(self):
-        return hash((self.name))
+    # def __hash__(self):
+    #     return hash((self.name))
 
 
 def index(request):
@@ -23,9 +23,9 @@ def index(request):
     context = {}
     # context[1] = 1
 
-    hero = Hero('myName', '18')
+    # hero = Hero('myName', '18')
 
-    return render(request, 'djangoServer/index.html', {'item', hero})
+    return render(request, 'djangoServer/index.html',)
 
 
 class IndexView(generic.ListView):
