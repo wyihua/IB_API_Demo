@@ -2,7 +2,15 @@
 
 <ul>
 {% for ticket in ticket_list.all %}
-    <li>{{ ticket }}</li>
+    <li>TicketID : {{ ticket.id }}
+        <ul>
+            <li>ask_size : {{ ticket.ask_size }}</li>
+            <li>bit_size : {{ ticket.bit_size }}</li>
+            <li>last_size : {{ ticket.last_size }}</li>
+            <li>bid_price : {{ ticket.bid_price }}</li>
+            <li>close_price : {{ ticket.close_price }}</li>
+        </ul>
+    </li>
 {% endfor %}
 </ul>
 
